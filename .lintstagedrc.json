@@ -1,0 +1,5 @@
+{
+  "*.{ts,js,tsx,jsx,scss,css,html,json,md,mdx,yml,yaml}": [
+    "yarn format --files="
+  ]
+}
