@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-export const Box = styled.div`
-  display: flex;
-  border-color: red;
-  justify-content: center;
+export const Container = styled.div`
+  padding: 20px;
 `;

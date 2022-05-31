@@ -1,30 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import * as Styled from './App.styled';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { People } from './pages/people';
+import { Header } from './components/header/header';
+
+import { Welcome } from './pages/welcome';
+import { Grommet } from 'grommet';
 
 function App() {
+  const mainTheme = {
+    global: {
+      colors: {
+        brand: 'var(--primary-color)',
+        active: 'var(--accent)',
+        placeholder: 'var(--gray)',
+      },
+    },
+  };
+
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Styled.Box>
-          <p>test</p>
-          <p>test2</p>
-        </Styled.Box>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={mainTheme}>
+      <Header />
+      <Styled.Container>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Welcome />} />
+            <Route path='/people' element={<People />} />
+          </Routes>
+        </BrowserRouter>
+      </Styled.Container>
+    </Grommet>
   );
 }
 
