@@ -1,20 +1,22 @@
+import { useState } from 'react';
 import { Heading, Tip } from 'grommet';
 import * as Styled from './list_header.styled';
 import { Search } from 'grommet-icons';
 
 interface ListHeaderInterface {
-  searchTerm: string;
   searchPeople: (value: string) => void;
   openAddPersonModal: () => void;
 }
 
 export function ListHeader({
-  searchTerm,
   searchPeople,
   openAddPersonModal,
 }: ListHeaderInterface) {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
+    setSearchTerm(value);
     searchPeople(value);
   };
 

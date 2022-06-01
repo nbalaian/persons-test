@@ -12,7 +12,6 @@ export function ListItem({ person }: ListItemProps) {
     <Styled.Wrapper>
       <Styled.Info>
         <Heading margin='none' level='5'>
-          {' '}
           {person.name}
         </Heading>
         <Styled.Organization>
