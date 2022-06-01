@@ -18,6 +18,7 @@ export const Actions = styled.div`
 `;
 
 export const AddBtn = styled(Button)`
+  height: 46px;
   padding: 8px 22px;
   border-color: var(--accent);
   text-transform: capitalize;
@@ -34,5 +35,6 @@ export const SearchContainer = styled.div`
 `;
 
 export const Search = styled(TextInput)`
+  height: 46px;
   border-radius: 18px;
 `;

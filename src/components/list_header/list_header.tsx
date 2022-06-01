@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Heading } from 'grommet';
-import * as Styled from './list-header.styled';
+import * as Styled from './list_header.styled';
 import { Search } from 'grommet-icons';
 
 export function ListHeader() {
@@ -19,7 +19,7 @@ export function ListHeader() {
         <Styled.SearchContainer>
           <Styled.Search
             icon={<Search />}
-            placeholder='type here'
+            placeholder='Filter by name'
             value={value}
             onChange={(event) => setValue(event.target.value)}
           />

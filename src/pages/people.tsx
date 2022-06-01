@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react';
-import { ListHeader } from '../components/list-header/list-header';
+import { List } from '../components/list/list';
+import { ListHeader } from '../components/list_header/list_header';
+import { usePeople } from '../hooks/use_people_hook';
 
 export function People() {
-  const [peopleList, setPeopleList] = useState([]);
-
-  useEffect(() => {
-    // fetch people here
-  }, []);
-
+  const { people, isLoading } = usePeople();
   return (
-    <div>
+    <>
       <ListHeader />
-      {/* people header */}
-      {/* people list */}
-    </div>
+      <List data={people} isLoading={isLoading} />
+      {/* pagination */}
+    </>
   );
 }
