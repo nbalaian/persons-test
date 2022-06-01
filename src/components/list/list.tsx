@@ -1,6 +1,8 @@
 import { Spinner } from 'grommet';
 import { ListItem } from '../list_item/list_item';
 import { Person } from '../../api/interfaces';
+import { v4 as uuid } from 'uuid';
+import * as Styled from './list.styled';
 
 interface ListProps {
   data: Person[];
@@ -9,19 +11,18 @@ interface ListProps {
 
 export function List({ data, isLoading }: ListProps) {
   return (
-    <div>
-      {isLoading && <Spinner />}
-      {data.length > 0 ? (
+    <Styled.Container>
+      {isLoading ? (
+        <Styled.LoaderWrapper>
+          <Spinner size='large' />
+        </Styled.LoaderWrapper>
+      ) : data?.length > 0 ? (
         data.map((person: Person) => {
-          return (
-            <div>
-              <ListItem key={person.id} person={person} />
-            </div>
-          );
+          return <ListItem key={uuid()} person={person} />;
         })
       ) : (
         <div> There are no people </div>
       )}
-    </div>
+    </Styled.Container>
   );
 }

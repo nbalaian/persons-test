@@ -16,6 +16,18 @@ export interface GetPeopleResponse {
   };
 }
 
+export interface FilterPeopleResponse {
+  success: boolean;
+  data: {
+    items: FilteredPeopleItem[];
+  };
+}
+
+interface FilteredPeopleItem {
+  item: Person;
+  result_score: number;
+}
+
 export interface GetPeopleApiParams {
   term?: string;
   start?: number;

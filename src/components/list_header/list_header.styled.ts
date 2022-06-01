@@ -1,4 +1,4 @@
-import { Button, TextInput } from 'grommet';
+import { Button, TextInput, Tip } from 'grommet';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -37,4 +37,8 @@ export const SearchContainer = styled.div`
 export const Search = styled(TextInput)`
   height: 46px;
   border-radius: 18px;
+`;
+
+export const SearchTip = styled(Tip)`
+  font-size: 10px;
 `;

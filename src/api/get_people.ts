@@ -14,7 +14,10 @@ export const getPeopleApi = async ({
     api_token: AUTH_TOKEN,
   };
 
-  const url = term ? `/persons/search?term=${term}` : '/persons';
+  const url =
+    term && term.length > 1
+      ? `/persons/search?term=${term}&fields=name`
+      : '/persons';
 
   return http.get(url, { params });
 };

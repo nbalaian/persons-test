@@ -1,13 +1,21 @@
-import { useState } from 'react';
-import { Heading } from 'grommet';
+import { Heading, Tip } from 'grommet';
 import * as Styled from './list_header.styled';
 import { Search } from 'grommet-icons';
 
-export function ListHeader() {
-  const [value, setValue] = useState('');
+interface ListHeaderInterface {
+  searchTerm: string;
+  searchPeople: (value: string) => void;
+  openAddPersonModal: () => void;
+}
 
-  const addPerson = () => {
-    console.log('add');
+export function ListHeader({
+  searchTerm,
+  searchPeople,
+  openAddPersonModal,
+}: ListHeaderInterface) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    searchPeople(value);
   };
 
   return (
@@ -17,14 +25,16 @@ export function ListHeader() {
       </Heading>
       <Styled.Actions>
         <Styled.SearchContainer>
+          {/* <Styled.SearchTip content='you should enter at least 2 characters'> */}
           <Styled.Search
             icon={<Search />}
             placeholder='Filter by name'
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
+            value={searchTerm}
+            onChange={handleChange}
           />
+          {/* </Styled.SearchTip> */}
         </Styled.SearchContainer>
-        <Styled.AddBtn label='Add person' onClick={addPerson} />
+        <Styled.AddBtn label='Add person' onClick={openAddPersonModal} />
       </Styled.Actions>
     </Styled.Wrapper>
   );
