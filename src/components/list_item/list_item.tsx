@@ -1,15 +1,16 @@
 import { Heading } from 'grommet';
-import { Organization } from 'grommet-icons';
+import { Organization, User } from 'grommet-icons';
 import { Person } from '../../api/interfaces';
 import * as Styled from './list_item.styled';
 
 interface ListItemProps {
   person: Person;
+  onClick: () => void;
 }
 
-export function ListItem({ person }: ListItemProps) {
+export function ListItem({ person, onClick }: ListItemProps) {
   return (
-    <Styled.Wrapper>
+    <Styled.Wrapper onClick={onClick}>
       <Styled.Info>
         <Heading margin='none' level='5'>
           {person.name}
@@ -20,7 +21,8 @@ export function ListItem({ person }: ListItemProps) {
         </Styled.Organization>
       </Styled.Info>
       <Styled.Avatar>
-        <img src='https://i.pravatar.cc/100' alt='avatar' />
+        {/* add image if source exists */}
+        <User size='large' />
       </Styled.Avatar>
     </Styled.Wrapper>
   );

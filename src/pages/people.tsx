@@ -10,6 +10,8 @@ import * as Styled from './people.styled';
 import { Person } from '../api/interfaces';
 import { useState } from 'react';
 import debounce from 'lodash.debounce';
+import { PersonDetails } from '../components/person_details/person_details';
+import { Modal } from '../components/modal/modal';
 
 export function People() {
   const {
@@ -25,6 +27,13 @@ export function People() {
 
   const [addPersonModalIsOpen, setAddPersonModalIsOpen] =
     useState<boolean>(false);
+
+  const [activePersonId, setActivePersonId] = useState<number | null>(null);
+
+  const onListItemClick = (id: number) => {
+    setActivePersonId(id);
+    setAddPersonModalIsOpen(true);
+  };
 
   const onSearchChange = debounce((term: string) => {
     if (term.length > 1) {
@@ -47,7 +56,13 @@ export function People() {
           </Styled.LoaderWrapper>
         ) : people?.length > 0 ? (
           people.map((person: Person) => {
-            return <ListItem key={uuid()} person={person} />;
+            return (
+              <ListItem
+                key={uuid()}
+                person={person}
+                onClick={() => onListItemClick(person.id)}
+              />
+            );
           })
         ) : (
           <div> There are no people </div>
@@ -64,7 +79,13 @@ export function People() {
           onEsc={() => setAddPersonModalIsOpen(false)}
           onClickOutside={() => setAddPersonModalIsOpen(false)}
         >
-          add person
+          <Modal
+            title='Person Information'
+            onBtnClick={() => setAddPersonModalIsOpen(false)}
+            onCancelClick={() => setAddPersonModalIsOpen(false)}
+          >
+            <PersonDetails personId={activePersonId as number} />
+          </Modal>
         </Layer>
       )}
 

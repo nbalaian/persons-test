@@ -40,3 +40,25 @@ export interface GetPeopleParams {
   start?: number;
   limit?: number;
 }
+
+export interface DefaultApiParam {
+  api_token: string;
+}
+
+export interface PersonPhone {
+  label: string;
+  primary: boolean;
+  value: string;
+}
+
+export interface PersonDetails {
+  id: number;
+  org_name: string;
+  name: string;
+  phone: PersonPhone[];
+  cc_email: string;
+
+  // assistant
+  // groups
+  // location
+}
