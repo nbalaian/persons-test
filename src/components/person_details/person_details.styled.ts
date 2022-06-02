@@ -1,3 +1,4 @@
+import { Button } from 'grommet';
 import styled from 'styled-components';
 
 export const PersonDetailsContainer = styled.div`
@@ -36,4 +37,28 @@ export const LoaderWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+`;
+
+export const DeletePersonContainer = styled.div`
+  padding: 10px;
+  text-align: center;
+`;
+
+export const AlertWrapper = styled.div`
+  padding: 10px;
+`;
+
+export const DeleteButton = styled(Button)`
+  border-color: var(--danger, #e29486);
+  &:hover,
+  &:active {
+    border-color: var(--danger, #e29486);
+    box-shadow: 0 0 0 1px var(--danger, #e29486);
+  }
+`;
+
+export const ButtonRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 `;

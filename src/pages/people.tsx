@@ -25,14 +25,14 @@ export function People() {
     fetchPrev,
   } = usePeople();
 
-  const [addPersonModalIsOpen, setAddPersonModalIsOpen] =
+  const [personDetailsModalIsOpen, setPersonDetailsModalIsOpen] =
     useState<boolean>(false);
 
   const [activePersonId, setActivePersonId] = useState<number | null>(null);
 
   const onListItemClick = (id: number) => {
     setActivePersonId(id);
-    setAddPersonModalIsOpen(true);
+    setPersonDetailsModalIsOpen(true);
   };
 
   const onSearchChange = debounce((term: string) => {
@@ -47,7 +47,7 @@ export function People() {
     <>
       <ListHeader
         searchPeople={onSearchChange}
-        openAddPersonModal={() => setAddPersonModalIsOpen(true)}
+        openAddPersonModal={() => setPersonDetailsModalIsOpen(true)}
       />
       <List>
         {isLoading ? (
@@ -74,17 +74,21 @@ export function People() {
         onNextClick={fetchNext}
         onPrevClick={fetchPrev}
       />
-      {addPersonModalIsOpen && (
+      {personDetailsModalIsOpen && (
         <Layer
-          onEsc={() => setAddPersonModalIsOpen(false)}
-          onClickOutside={() => setAddPersonModalIsOpen(false)}
+          onEsc={() => setPersonDetailsModalIsOpen(false)}
+          onClickOutside={() => setPersonDetailsModalIsOpen(false)}
         >
           <Modal
             title='Person Information'
-            onBtnClick={() => setAddPersonModalIsOpen(false)}
-            onCancelClick={() => setAddPersonModalIsOpen(false)}
+            onBtnClick={() => setPersonDetailsModalIsOpen(false)}
+            onCancelClick={() => setPersonDetailsModalIsOpen(false)}
           >
-            <PersonDetails personId={activePersonId as number} />
+            <PersonDetails
+              personId={activePersonId as number}
+              loadPeople={loadPeople}
+              closeModal={() => setPersonDetailsModalIsOpen(false)}
+            />
           </Modal>
         </Layer>
       )}

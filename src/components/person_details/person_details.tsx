@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Heading,
   Table,
@@ -5,17 +6,45 @@ import {
   TableCell,
   TableRow,
   Spinner,
+  Button,
+  Layer,
 } from 'grommet';
 import * as Styled from './person_details.styled';
 import { usePersonDetailsHook } from '../../hooks/use_person_details_hook';
+import { Trash } from 'grommet-icons';
+import { deletePersonApi } from '../../api/delete_person';
 
 interface PersonDetailsProps {
   personId: number;
+  loadPeople: (start?: number) => void;
+  closeModal: () => void;
 }
 
-export function PersonDetails({ personId }: PersonDetailsProps) {
+export function PersonDetails({
+  personId,
+  loadPeople,
+  closeModal,
+}: PersonDetailsProps) {
   const { details, isLoading } = usePersonDetailsHook({ personId });
-  console.log(details);
+
+  const [deletePersonAlertIsOpen, setDeletePersonAlertIsOpen] =
+    useState<boolean>(false);
+
+  const deletePerson = async (id: number) => {
+    await deletePersonApi({ id })
+      .then(() => {
+        console.log('success');
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setDeletePersonAlertIsOpen(false));
+  };
+
+  const handleDeletePerson = () => {
+    deletePerson(personId);
+    closeModal();
+    loadPeople(0);
+  };
+
   return (
     <Styled.PersonDetailsContainer>
       {isLoading ? (
@@ -71,6 +100,31 @@ export function PersonDetails({ personId }: PersonDetailsProps) {
               </TableBody>
             </Table>
           </Styled.PersonInfo>
+          <Styled.DeletePersonContainer>
+            <Trash onClick={() => setDeletePersonAlertIsOpen(true)} />
+          </Styled.DeletePersonContainer>
+
+          {/* getter to use alert or toast instead of modal, or rethink ux */}
+          {deletePersonAlertIsOpen && (
+            <Layer
+              onEsc={() => setDeletePersonAlertIsOpen(false)}
+              onClickOutside={() => setDeletePersonAlertIsOpen(false)}
+            >
+              <Styled.AlertWrapper>
+                Are you sure you want to delete this person?
+                <Styled.ButtonRow>
+                  <Button
+                    label='Cancel'
+                    onClick={() => setDeletePersonAlertIsOpen(false)}
+                  />
+                  <Styled.DeleteButton
+                    label='Yes'
+                    onClick={handleDeletePerson}
+                  />
+                </Styled.ButtonRow>
+              </Styled.AlertWrapper>
+            </Layer>
+          )}
         </>
       )}
     </Styled.PersonDetailsContainer>

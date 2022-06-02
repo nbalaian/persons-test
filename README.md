@@ -1,3 +1,9 @@
+I don't use any store, cause I'm sure that store here will be redundant and overengineering,
+but I think it's better to add context here later, to avoid props drilling
+Some of data is missed for person details, I think it's related to export from scv
+For all Api call should be added proper error handling, with toast or alert to make user aware what happened
+delete request has delay on the be side, server return wrong list after deleting
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

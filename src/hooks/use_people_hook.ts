@@ -44,10 +44,11 @@ export const usePeople = (): usePeopleResult => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMoreItems]);
 
-  const getPeople = async () => {
+  const getPeople = async (start?: number) => {
     // add toast
+    console.log(start);
     setIsLoading(true);
-    await getPeopleApi({ start: top, limit: ITEMS_PER_PAGE })
+    await getPeopleApi({ start: start ?? top, limit: ITEMS_PER_PAGE })
       .then((data: AxiosResponse) => {
         const peopleData: GetPeopleResponse = data.data;
         setPeople(peopleData.data);

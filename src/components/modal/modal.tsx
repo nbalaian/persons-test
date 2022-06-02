@@ -25,9 +25,12 @@ export function Modal({
       </Styled.ModalHeader>
       <Styled.ModalBody>{children}</Styled.ModalBody>
       <Styled.ModalFooter>
-        <Styled.ModalBtn secondary onClick={onBtnClick} type='button'>
-          Back
-        </Styled.ModalBtn>
+        <Styled.ModalBtn
+          secondary
+          onClick={onBtnClick}
+          type='button'
+          label='Back'
+        />
       </Styled.ModalFooter>
     </Styled.ModalWrapper>
   );
