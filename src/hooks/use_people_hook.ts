@@ -45,8 +45,6 @@ export const usePeople = (): usePeopleResult => {
   }, [isMoreItems]);
 
   const getPeople = async (start?: number) => {
-    // add toast
-    console.log(start);
     setIsLoading(true);
     await getPeopleApi({ start: start ?? top, limit: ITEMS_PER_PAGE })
       .then((data: AxiosResponse) => {

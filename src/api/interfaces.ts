@@ -4,6 +4,13 @@ export interface Person {
   id: number;
 }
 
+export interface NewPerson {
+  name: string;
+  org_id: number;
+  phone?: PersonPhone[];
+  email?: PersonEmail[];
+}
+
 export interface GetPeopleResponse {
   success: boolean;
   data: Person[];
@@ -51,6 +58,12 @@ export interface PersonPhone {
   value: string;
 }
 
+export interface PersonEmail {
+  label: string;
+  primary: boolean;
+  value: string;
+}
+
 export interface PersonDetails {
   id: number;
   org_name: string;
@@ -61,4 +74,9 @@ export interface PersonDetails {
   // assistant
   // groups
   // location
+}
+
+export interface Organization {
+  id: number;
+  name: string;
 }

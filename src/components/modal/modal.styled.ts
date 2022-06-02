@@ -26,7 +26,7 @@ export const ModalBody = styled.div`
 
 export const ModalFooter = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 10px;
   border-top: 1px solid var(--gray);
   background-color: var(--light-gray);
@@ -40,5 +40,6 @@ export const ModalBtn = styled(Button)`
   &:hover,
   &:active {
     border: 1px solid var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
   }
 `;

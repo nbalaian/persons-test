@@ -12,6 +12,7 @@ import { useState } from 'react';
 import debounce from 'lodash.debounce';
 import { PersonDetails } from '../components/person_details/person_details';
 import { Modal } from '../components/modal/modal';
+import { AddPerson } from '../components/add_person/add_person';
 
 export function People() {
   const {
@@ -26,6 +27,9 @@ export function People() {
   } = usePeople();
 
   const [personDetailsModalIsOpen, setPersonDetailsModalIsOpen] =
+    useState<boolean>(false);
+
+  const [addPersonModalIsOpen, setAddPersonModalIsOpen] =
     useState<boolean>(false);
 
   const [activePersonId, setActivePersonId] = useState<number | null>(null);
@@ -47,7 +51,7 @@ export function People() {
     <>
       <ListHeader
         searchPeople={onSearchChange}
-        openAddPersonModal={() => setPersonDetailsModalIsOpen(true)}
+        openAddPersonModal={() => setAddPersonModalIsOpen(true)}
       />
       <List>
         {isLoading ? (
@@ -81,7 +85,6 @@ export function People() {
         >
           <Modal
             title='Person Information'
-            onBtnClick={() => setPersonDetailsModalIsOpen(false)}
             onCancelClick={() => setPersonDetailsModalIsOpen(false)}
           >
             <PersonDetails
@@ -93,7 +96,22 @@ export function People() {
         </Layer>
       )}
 
-      {/* two modals */}
+      {addPersonModalIsOpen && (
+        <Layer
+          onEsc={() => setAddPersonModalIsOpen(false)}
+          onClickOutside={() => setAddPersonModalIsOpen(false)}
+        >
+          <Modal
+            title='Add Person'
+            onCancelClick={() => setAddPersonModalIsOpen(false)}
+          >
+            <AddPerson
+              loadPeople={loadPeople}
+              closeModal={() => setAddPersonModalIsOpen(false)}
+            />
+          </Modal>
+        </Layer>
+      )}
     </>
   );
 }

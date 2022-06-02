@@ -5,21 +5,15 @@ import * as Styled from './modal.styled';
 interface ModalProps {
   children: React.ReactNode;
   title: string;
-  onBtnClick: () => void;
   onCancelClick: () => void;
 }
 
-export function Modal({
-  children,
-  title,
-  onCancelClick,
-  onBtnClick,
-}: ModalProps) {
+export function Modal({ children, title, onCancelClick }: ModalProps) {
   return (
     <Styled.ModalWrapper>
       <Styled.ModalHeader>
         <Heading level='5' margin='0'>
-          Person Information
+          {title}
         </Heading>
         <Close onClick={onCancelClick} />
       </Styled.ModalHeader>
@@ -27,7 +21,7 @@ export function Modal({
       <Styled.ModalFooter>
         <Styled.ModalBtn
           secondary
-          onClick={onBtnClick}
+          onClick={onCancelClick}
           type='button'
           label='Back'
         />
