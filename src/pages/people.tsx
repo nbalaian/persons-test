@@ -84,6 +84,7 @@ export function People() {
           onClickOutside={() => setPersonDetailsModalIsOpen(false)}
         >
           <Modal
+            data-testid='person-details-modal'
             title='Person Information'
             onCancelClick={() => setPersonDetailsModalIsOpen(false)}
           >
@@ -102,6 +103,7 @@ export function People() {
           onClickOutside={() => setAddPersonModalIsOpen(false)}
         >
           <Modal
+            data-testid='add-person-modal'
             title='Add Person'
             onCancelClick={() => setAddPersonModalIsOpen(false)}
           >

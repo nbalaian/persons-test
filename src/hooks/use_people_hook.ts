@@ -21,7 +21,6 @@ interface usePeopleResult {
 const ITEMS_PER_PAGE = 10;
 
 export const usePeople = (): usePeopleResult => {
-  // add / remove / show details
   const [people, setPeople] = useState<Person[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [top, setTop] = useState<number>(0);

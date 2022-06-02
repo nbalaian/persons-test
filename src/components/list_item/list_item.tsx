@@ -3,14 +3,14 @@ import { Organization, User } from 'grommet-icons';
 import { Person } from '../../api/interfaces';
 import * as Styled from './list_item.styled';
 
-interface ListItemProps {
+export interface ListItemProps {
   person: Person;
   onClick: () => void;
 }
 
 export function ListItem({ person, onClick }: ListItemProps) {
   return (
-    <Styled.Wrapper onClick={onClick}>
+    <Styled.Wrapper onClick={onClick} data-testid='list-item-wrapper'>
       <Styled.Info>
         <Heading margin='none' level='5'>
           {person.name}

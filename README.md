@@ -4,6 +4,15 @@ Some of data is missed for person details, I think it's related to export from s
 For all Api call should be added proper error handling, with toast or alert to make user aware what happened
 delete request has delay on the be side, server return wrong list after deleting
 
+1. To add tip for search and proper handling, cause BE returns error if term shorter than 2 characters
+2. Add toasts for requests
+3. Extend form with fields
+4. Or handle delay properly for getPersons request or to ask BE dev for make adjustments (:
+5. Add all fields for Person
+6. Add and map phones and email (i didn't add cause fields are not required for creating new person)
+
+https://nbalaian.github.io/persons-test/ GH pages
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

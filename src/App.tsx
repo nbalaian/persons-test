@@ -22,7 +22,7 @@ function App() {
     <Grommet theme={mainTheme}>
       <Header />
       <Styled.Container>
-        <BrowserRouter basename='/test'>
+        <BrowserRouter basename='/persons-test/'>
           <Routes>
             <Route path='/' element={<Welcome />} />
             <Route path='/people' element={<People />} />
