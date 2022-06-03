@@ -27,7 +27,9 @@ export const usePeople = (): usePeopleResult => {
   const [isMoreItems, setIsMoreItems] = useState<boolean>(true);
 
   const fetchNext = () => {
-    setTop(top + ITEMS_PER_PAGE);
+    if (isMoreItems) {
+      setTop(top + ITEMS_PER_PAGE);
+    }
     getPeople();
   };
 
