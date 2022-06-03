@@ -10,6 +10,10 @@ delete request has delay on the be side, server return wrong list after deleting
 4. Or handle delay properly for getPersons request or to ask BE dev for make adjustments (:
 5. Add all fields for Person
 6. Add and map phones and email (i didn't add cause fields are not required for creating new person)
+7. Person details should be separate page, it's better ux i think. confirmation modal above is not good approach, need to be reworked
+8. If the server returned the total number of people, the pagination could be more convenient and look better
+9. Mocks should be organized better to be more reusable
+10. There are more tests should be added
 
 https://nbalaian.github.io/persons-test/ GH pages
 

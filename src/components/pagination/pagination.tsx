@@ -1,6 +1,6 @@
 import * as Styled from './pagination.styled';
 
-interface PaginationProps {
+export interface PaginationProps {
   isPrevActive: boolean;
   isNextActive: boolean;
   onNextClick: () => void;

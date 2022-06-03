@@ -14,7 +14,7 @@ import { usePersonDetailsHook } from '../../hooks/use_person_details_hook';
 import { Trash } from 'grommet-icons';
 import { deletePersonApi } from '../../api/delete_person';
 
-interface PersonDetailsProps {
+export interface PersonDetailsProps {
   personId: number;
   loadPeople: (start?: number) => void;
   closeModal: () => void;
@@ -49,7 +49,7 @@ export function PersonDetails({
     <Styled.PersonDetailsContainer>
       {isLoading ? (
         <Styled.LoaderWrapper>
-          <Spinner size='large' />
+          <Spinner size='large' data-testid='spinner' />
         </Styled.LoaderWrapper>
       ) : (
         <>

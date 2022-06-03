@@ -59,7 +59,7 @@ export const usePeople = (): usePeopleResult => {
 
   const filterPeopleByName = async (term: string) => {
     setIsLoading(true);
-    await getPeopleApi({ start: top, limit: 10, term })
+    await getPeopleApi({ start: 0, limit: 10, term })
       .then((data: AxiosResponse) => {
         const peopleData: FilterPeopleResponse = data.data;
         const flattened = peopleData.data.items.flatMap(

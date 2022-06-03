@@ -2,7 +2,7 @@ import { Heading } from 'grommet';
 import { Close } from 'grommet-icons';
 import * as Styled from './modal.styled';
 
-interface ModalProps {
+export interface ModalProps {
   children: React.ReactNode;
   title: string;
   onCancelClick: () => void;
@@ -20,6 +20,7 @@ export function Modal({ children, title, onCancelClick }: ModalProps) {
       <Styled.ModalBody>{children}</Styled.ModalBody>
       <Styled.ModalFooter>
         <Styled.ModalBtn
+          data-testid='cancel-btn'
           secondary
           onClick={onCancelClick}
           type='button'

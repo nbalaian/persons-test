@@ -68,6 +68,7 @@ export function AddPerson({ loadPeople, closeModal }: AddPersonProps) {
   return (
     <Styled.AddPersonContainer>
       <Form
+        data-testid='add-person-form'
         value={formValue}
         onChange={(nextValue) => setValue(nextValue)}
         onReset={() =>
@@ -75,15 +76,16 @@ export function AddPerson({ loadPeople, closeModal }: AddPersonProps) {
         }
         onSubmit={addPerson}
       >
-        <FormField name='name' htmlFor='text-input-id' label='Name'>
-          <TextInput required id='text-input-id' name='name' />
+        <FormField name='name' htmlFor='text-input-name' label='Name'>
+          <TextInput required id='text-input-name' name='name' />
         </FormField>
         <FormField
           name='organization'
-          htmlFor='text-input-id'
+          htmlFor='select-organization'
           label='Select Organization'
         >
           <Select
+            id='select-organization'
             required
             labelKey='label'
             name='organization'
@@ -92,7 +94,11 @@ export function AddPerson({ loadPeople, closeModal }: AddPersonProps) {
         </FormField>
 
         <Box direction='row' gap='medium' margin='medium'>
-          <Styled.FormButton type='reset' label='Reset Form' />
+          <Styled.FormButton
+            type='reset'
+            label='Reset Form'
+            data-testid='reset'
+          />
           <Styled.FormButton
             type='submit'
             label='Submit form'

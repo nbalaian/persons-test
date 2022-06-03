@@ -1,25 +1,30 @@
-import { waitFor, render, screen, act } from '@testing-library/react';
+import { waitFor, render, screen } from '@testing-library/react';
 import { ListItem, ListItemProps } from './list_item';
 import userEvent from '@testing-library/user-event';
 
+export const defaultListItemProps: ListItemProps = {
+  person: {
+    name: 'Test Name',
+    id: 777,
+    org_name: 'Google',
+  },
+  onClick: jest.fn(),
+};
+
 describe('ListItem component tests', () => {
-  const defaultProps: ListItemProps = {
-    person: {
-      name: 'Test Name',
-      id: 777,
-      org_name: 'Google',
-    },
-    onClick: jest.fn(),
-  };
   const renderComponent = (): void => {
-    render(<ListItem {...defaultProps} />);
+    render(<ListItem {...defaultListItemProps} />);
   };
 
   it('should render component and display person data', async () => {
     renderComponent();
 
-    expect(screen.getByText(defaultProps.person.name)).toBeInTheDocument();
-    expect(screen.getByText(defaultProps.person.org_name)).toBeInTheDocument();
+    expect(
+      screen.getByText(defaultListItemProps.person.name)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(defaultListItemProps.person.org_name)
+    ).toBeInTheDocument();
   });
 
   it('should open details modal if user click on list item', async () => {
@@ -31,7 +36,7 @@ describe('ListItem component tests', () => {
     userEvent.click(wrapper);
 
     await waitFor(() => {
-      expect(defaultProps.onClick).toBeCalled();
+      expect(defaultListItemProps.onClick).toBeCalled();
     });
   });
 });

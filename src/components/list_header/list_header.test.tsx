@@ -1,4 +1,4 @@
-import { waitFor, render, screen, act } from '@testing-library/react';
+import { waitFor, render, screen } from '@testing-library/react';
 import { ListHeader, ListHeaderInterface } from './list_header';
 import userEvent from '@testing-library/user-event';
 
@@ -12,7 +12,7 @@ describe('ListHeader component tests', () => {
     render(<ListHeader {...defaultProps} />);
   };
 
-  it('should render component and display person data', async () => {
+  it('should render component and display person list header', async () => {
     renderComponent();
 
     const title = `People's List`;
@@ -21,7 +21,7 @@ describe('ListHeader component tests', () => {
     expect(screen.getByTestId('search-input')).toBeInTheDocument();
   });
 
-  it('should open details modal if user click on list item', async () => {
+  it('should open add person modal if user click on add person button', async () => {
     renderComponent();
 
     const addBtn = screen.getByText('Add person');
@@ -34,5 +34,18 @@ describe('ListHeader component tests', () => {
     });
   });
 
-  // test for user input search
+  it('should enter search term and call search people', async () => {
+    renderComponent();
+
+    const inputElement: HTMLElement =
+      screen.getByPlaceholderText('Filter by name');
+
+    userEvent.type(inputElement, 'test');
+
+    await waitFor(() => {
+      expect(inputElement).toHaveValue('test');
+    });
+
+    expect(defaultProps.searchPeople).toBeCalled();
+  });
 });
