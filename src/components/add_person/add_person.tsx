@@ -33,8 +33,8 @@ export function AddPerson({ loadPeople, closeModal }: AddPersonProps) {
   const [formValue, setValue] = useState<PersonFormData>(defaultPersonData);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
 
-  const loadOrganizations = async () => {
-    await getOrganizationsApi()
+  const loadOrganizations = () => {
+    getOrganizationsApi()
       .then((data) => {
         const normalized = data.data.data.map(({ id, name }: Organization) => ({
           label: name,
@@ -50,7 +50,7 @@ export function AddPerson({ loadPeople, closeModal }: AddPersonProps) {
       name: formValue.name,
       org_id: formValue.organization.value,
     };
-    await addPersonApi(person)
+    addPersonApi(person)
       .then(() => {
         loadPeople(0);
         closeModal();

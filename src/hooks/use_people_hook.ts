@@ -45,9 +45,9 @@ export const usePeople = (): usePeopleResult => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMoreItems]);
 
-  const getPeople = async (start?: number) => {
+  const getPeople = (start?: number) => {
     setIsLoading(true);
-    await getPeopleApi({ start: start ?? top, limit: ITEMS_PER_PAGE })
+    getPeopleApi({ start: start ?? top, limit: ITEMS_PER_PAGE })
       .then((data: AxiosResponse) => {
         const peopleData: GetPeopleResponse = data.data;
         setPeople(peopleData.data);
@@ -59,9 +59,9 @@ export const usePeople = (): usePeopleResult => {
       .finally(() => setIsLoading(false));
   };
 
-  const filterPeopleByName = async (term: string) => {
+  const filterPeopleByName = (term: string) => {
     setIsLoading(true);
-    await getPeopleApi({ start: 0, limit: 10, term })
+    getPeopleApi({ start: 0, limit: 10, term })
       .then((data: AxiosResponse) => {
         const peopleData: FilterPeopleResponse = data.data;
         const flattened = peopleData.data.items.flatMap(

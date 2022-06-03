@@ -30,8 +30,8 @@ export function PersonDetails({
   const [deletePersonAlertIsOpen, setDeletePersonAlertIsOpen] =
     useState<boolean>(false);
 
-  const deletePerson = async (id: number) => {
-    await deletePersonApi({ id })
+  const deletePerson = (id: number) => {
+    deletePersonApi({ id })
       .then(() => {
         console.log('success');
       })

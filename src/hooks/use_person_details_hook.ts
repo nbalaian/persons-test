@@ -17,9 +17,9 @@ export const usePersonDetailsHook = ({
   const [details, setDetails] = useState<PersonDetails | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const getPersonDetails = async (id: number) => {
+  const getPersonDetails = (id: number) => {
     setIsLoading(true);
-    await getPersonDetailsApi({ id })
+    getPersonDetailsApi({ id })
       .then((data) => {
         setDetails(data.data.data);
       })
